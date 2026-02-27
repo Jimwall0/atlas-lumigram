@@ -16,22 +16,22 @@ export default function App() {
 
   const loginCheck = () => {
     if (email && password) {
-      router.push('/');
+      router.push('/(tabs)');
     } else {
       alert("Please valid email and password");
     }
   }
   
   const createAccount = () => {
-    router.push('/profile');
+    router.push('./(tabs)/profile');
   }
 
   return (
     <View style={styles.container}>
 
       <Image
-      source={{ uri: "./assets/images/logo" }}
-      style={{ width: 200, height: 400 }}
+        source={require('../assets/images/logo.png')}
+        style={{ width: 200, height: 200, resizeMode: 'contain' }}
       />
 
       <Text style={styles.title}>Login</Text>
@@ -52,9 +52,12 @@ export default function App() {
         onChangeText={(text: string) => setPassword(text)}
         secureTextEntry
       />
-
-      <Button title="Sign In" onPress={loginCheck} color="green"/>
-      <Button title="Create New Account" onPress={createAccount} color="white"/>
+      <View style={{width:'30%'}}>
+        <Button title="Sign In" onPress={loginCheck} color="#00ad90"/>
+      </View>
+      <View style={{width:'30%'}}>
+        <Button title="Create New Account" onPress={createAccount} color="#091858"/>
+      </View>
     </View>
   );
 }
@@ -64,21 +67,26 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: 24,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#091858",
+    color: "#ffffff",
+    alignItems: "center",
   },
   title: {
     fontSize: 28,
     fontWeight: "bold",
     marginBottom: 32,
     textAlign: "center",
+    color: "#fff",
   },
   input: {
-    backgroundColor: "#fff",
+    backgroundColor: "#091858",
     padding: 14,
     borderRadius: 8,
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: "#ddd",
+    borderColor: "#00ad90",
+    color: '#fff',
+    width: '75%'
   },
   buttonText: {
     color: "#fff",
