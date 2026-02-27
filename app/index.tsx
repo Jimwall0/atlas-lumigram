@@ -16,14 +16,14 @@ export default function App() {
 
   const loginCheck = () => {
     if (email && password) {
-      router.push('/(tabs)');
+      router.push('/');
     } else {
       alert("Please valid email and password");
     }
   }
   
   const createAccount = () => {
-    router.push('/(tabs)/home');
+    router.push('/profile');
   }
 
   return (

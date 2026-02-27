@@ -1,9 +1,9 @@
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { View, Text } from 'react-native';
 
 export default function App() {
   return (
-    <GestureHandlerRootView>
-      <ActualApp />
-    </GestureHandlerRootView>
+    <View>
+        <Text>Homepage</Text>
+    </View>
   );
 }
