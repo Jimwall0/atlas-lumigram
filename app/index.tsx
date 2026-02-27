@@ -23,7 +23,7 @@ export default function App() {
   }
   
   const createAccount = () => {
-    router.push('/(tabs)/profile');
+    router.push('./signIn');
   }
 
   return (
@@ -53,7 +53,7 @@ export default function App() {
         secureTextEntry
       />
       <View style={{width:'75%'}}>
-        <Button title="Hot fix check" onPress={loginCheck} color="#00ad90"/>
+        <Button title="Sign in" onPress={loginCheck} color="#00ad90"/>
       </View>
       <View style={{width:'75%', borderColor:'#00061d'}}>
         <Button title="Create New Account" onPress={createAccount} color="#091858"/>
