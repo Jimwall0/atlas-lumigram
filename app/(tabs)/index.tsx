@@ -1,12 +1,17 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Button } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import {homeFeed} from "@/placeholder"
+import { useRouter } from "expo-router";
 
 export default function App() {
+    const router = useRouter();
   return (
     <View style={{flex: 1, flexDirection: "column"}}>
-        <View><Text style={{flex: 1, fontSize: 24, fontWeight: 'bold'}}>Home Feed</Text></View>
+        <View style={{flex:1}}>
+            <Text style={{flex: 1, fontSize: 24, fontWeight: 'bold'}}>Test Page</Text>
+            <Button title="Sign out" onPress={() => router.push('/')} color="#00ad90"/>
+        </View>
         <FlashList
             data={homeFeed}
             keyExtractor={(item) => item.id}
