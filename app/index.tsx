@@ -6,6 +6,7 @@ import {
   TextInput,
   StyleSheet,
   Button,
+  Image,
 } from "react-native";
 
 export default function App() {
@@ -15,14 +16,24 @@ export default function App() {
 
   const loginCheck = () => {
     if (email && password) {
-      router.push('./(tabs)/index');
+      router.push('/(tabs)');
     } else {
       alert("Please valid email and password");
     }
   }
+  
+  const createAccount = () => {
+    router.push('/(tabs)/home');
+  }
 
   return (
     <View style={styles.container}>
+
+      <Image
+      source={{ uri: "./assets/images/logo" }}
+      style={{ width: 200, height: 400 }}
+      />
+
       <Text style={styles.title}>Login</Text>
 
       <TextInput
@@ -42,7 +53,8 @@ export default function App() {
         secureTextEntry
       />
 
-      <Button title="Log In" onPress={loginCheck} color="green"/>
+      <Button title="Sign In" onPress={loginCheck} color="green"/>
+      <Button title="Create New Account" onPress={createAccount} color="white"/>
     </View>
   );
 }
