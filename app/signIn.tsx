@@ -18,12 +18,12 @@ export default function App() {
     if (email && password) {
       router.push('/(tabs)');
     } else {
-      alert("Please valid email and password");
+      alert("Please enter valid email and password");
     }
   }
   
   const createAccount = () => {
-    router.push('/(tabs)/profile');
+    router.push('/');
   }
 
   return (
@@ -34,7 +34,7 @@ export default function App() {
         style={{ width: 200, height: 200, resizeMode: 'contain' }}
       />
 
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Register</Text>
 
       <TextInput
         style={styles.input}
@@ -53,10 +53,10 @@ export default function App() {
         secureTextEntry
       />
       <View style={{width:'75%'}}>
-        <Button title="Hot fix check" onPress={loginCheck} color="#00ad90"/>
+        <Button title="Create Account" onPress={loginCheck} color="#00ad90"/>
       </View>
       <View style={{width:'75%', borderColor:'#00061d'}}>
-        <Button title="Create New Account" onPress={createAccount} color="#091858"/>
+        <Button title="Login to existing account" onPress={createAccount} color="#091858"/>
       </View>
     </View>
   );
