@@ -6,7 +6,7 @@ import {homeFeed} from "@/placeholder"
 export default function App() {
   return (
     <View style={{flex: 1, flexDirection: "column"}}>
-        <Text style={{flex: 1, fontSize: 24, fontWeight: 'bold'}}>Home Feed</Text>
+        <View><Text style={{flex: 1, fontSize: 24, fontWeight: 'bold'}}>Home Feed</Text></View>
         <FlashList
             data={homeFeed}
             keyExtractor={(item) => item.id}
