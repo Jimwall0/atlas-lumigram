@@ -1,17 +1,15 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, View } from "react-native";
 
-export default function Tab() {
+export default function Index() {
   return (
-    <View style={styles.container}>
-      <Text>Tab [Home|Settings]</Text>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text>Edit app/index.tsx to edit this screen.</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
