@@ -1,4 +1,4 @@
-import { Button } from "@react-navigation/elements";
+import { Button } from "react-native";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -11,8 +11,17 @@ import {
 } from "react-native";
 
 export default function App() {
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const loginCheck = () => {
+    if (email && password) {
+      router.push('/tabs');
+    } else {
+      alert("Please valid email and password");
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -35,9 +44,7 @@ export default function App() {
         secureTextEntry
       />
 
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+      <Button title="Log In" onPress={loginCheck} color="green"/>
     </View>
   );
 }
