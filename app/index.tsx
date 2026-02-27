@@ -1,13 +1,11 @@
-import { Button } from "react-native";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
   StyleSheet,
-  TextInputProps,
+  Button,
 } from "react-native";
 
 export default function App() {
@@ -17,7 +15,7 @@ export default function App() {
 
   const loginCheck = () => {
     if (email && password) {
-      router.push('/tabs');
+      router.push('./(tabs)/index');
     } else {
       alert("Please valid email and password");
     }
@@ -69,12 +67,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderWidth: 1,
     borderColor: "#ddd",
-  },
-  button: {
-    backgroundColor: "#4CAF50",
-    padding: 16,
-    borderRadius: 8,
-    alignItems: "center",
   },
   buttonText: {
     color: "#fff",
