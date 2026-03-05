@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
-import { useAuth } from "../../contexts/AuthContext";
-import { auth } from "../../firebase";
+import { useAuth } from "@/contexts/AuthContext";
+import { auth } from "@/firebase";
 import { signOut } from "firebase/auth";
 import { useRouter } from "expo-router";
 
