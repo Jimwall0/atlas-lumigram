@@ -8,17 +8,26 @@ import {
   Button,
   Image,
 } from "react-native";
+import { auth } from "@/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { AuthGuard } from "../components/AuthGuard"
 
 export default function App() {
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const loginCheck = () => {
-    if (email && password) {
-      router.push('/(tabs)');
-    } else {
-      alert("Please valid email and password");
+  const loginCheck = async () => {
+    if (!email || !password) {
+      alert("Enter a valid email and password");
+      return;
+    }
+    try{
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      console.log("Logged in:", userCredential.user.uid);
+      router.push("/(tabs)");
+    } catch (error: any) {
+      alert(error.message);
     }
   }
   
@@ -27,6 +36,7 @@ export default function App() {
   }
 
   return (
+    <AuthGuard>
     <View style={styles.container}>
 
       <Image
@@ -59,6 +69,7 @@ export default function App() {
         <Button title="Create New Account" onPress={createAccount} color="#091858"/>
       </View>
     </View>
+    </AuthGuard>
   );
 }
 
