@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { auth } from "@/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { AuthGuard } from "../components/AuthGuard"
 
 export default function App() {
   const router = useRouter();
@@ -36,7 +35,6 @@ export default function App() {
   }
 
   return (
-    <AuthGuard>
     <View style={styles.container}>
 
       <Image
@@ -69,7 +67,6 @@ export default function App() {
         <Button title="Create New Account" onPress={createAccount} color="#091858"/>
       </View>
     </View>
-    </AuthGuard>
   );
 }
 
