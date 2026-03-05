@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -8,6 +8,7 @@ const firebaseConfig = {
   storageBucket: "social-chatting-a9eb0.firebasestorage.app",
   messagingSenderId: "474286335767",
   appId: "1:474286335767:web:f0da241bf470ab4af47952",
+  measurementId: "G-GRN9EF27SR"
 };
 
 const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);

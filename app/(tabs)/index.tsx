@@ -26,16 +26,16 @@ export default function Home() {
       <View style={styles.buttons}>
         <View style={styles.buttonWrapper}>
           <Button
-            title="Page 1"
+            title="Send Message"
             onPress={() => router.push("/(tabs)/post")}
             color="#00ad90"
           />
         </View>
         <View style={styles.buttonWrapper}>
           <Button
-            title="Page 2"
+            title="Add Friends"
             onPress={() => router.push("/(tabs)/addFriends")}
-            color="#091858"
+            color="#00ad90"
           />
         </View>
       </View>

@@ -21,6 +21,10 @@ export default function App() {
       alert("Please enter a valid email and password");
       return;
     }
+    if (password.length < 6) {
+      alert("Please have at least 6 characters");
+      return;
+    }
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
