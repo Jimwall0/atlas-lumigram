@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -9,21 +9,45 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-
-const placeholderMessages = [
-  { id: "1", user: "Alex", message: "Welcome to the global chat!" },
-  { id: "2", user: "Sam", message: "This is a static example." },
-  { id: "3", user: "Jordan", message: "Hey what's going on tonight" },
-];
+import { db, auth } from "@/firebase"; // adjust path
+import { collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "firebase/firestore";
 
 export default function ChatScreen() {
   const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState<any[]>([]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!message.trim()) return;
-    alert("Message sending will be implemented later.");
-    setMessage("");
+
+    try {
+      await addDoc(collection(db, "groupChats", "globalChat", "messages"), {
+        text: message,
+        senderId: auth.currentUser?.uid,
+        senderName: auth.currentUser?.displayName || "Anonymous",
+        timestamp: serverTimestamp(),
+      });
+      setMessage("");
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
   };
+
+  useEffect(() => {
+    const messagesQuery = query(
+      collection(db, "groupChats", "globalChat", "messages"),
+      orderBy("timestamp", "asc")
+    );
+
+    const unsubscribe = onSnapshot(messagesQuery, (snapshot) => {
+      const loadedMessages = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setMessages(loadedMessages);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <KeyboardAvoidingView
@@ -37,13 +61,13 @@ export default function ChatScreen() {
 
       {/* Message List */}
       <FlatList
-        data={placeholderMessages}
+        data={messages}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.messageList}
         renderItem={({ item }) => (
-          <View style={styles.messageBubble}>
-            <Text style={styles.username}>{item.user}</Text>
-            <Text style={styles.messageText}>{item.message}</Text>
+          <View style={[styles.messageBubble, item.senderId === auth.currentUser?.uid && { backgroundColor: "#00ad90" }]}>
+            <Text style={styles.username}>{item.senderName || item.senderId}</Text>
+            <Text style={styles.messageText}>{item.text}</Text>
           </View>
         )}
       />
