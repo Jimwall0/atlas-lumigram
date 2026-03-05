@@ -8,21 +8,34 @@ import {
   Button,
   Image,
 } from "react-native";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase";
 
 export default function App() {
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const loginCheck = () => {
-    if (email && password) {
+  const loginCheck = async () => {
+    if (!email || !password) {
+      alert("Please enter a valid email and password");
+      return;
+    }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("User created:", user.uid);
       router.push('/(tabs)');
-    } else {
-      alert("Please enter valid email and password");
+    } catch (error: any) {
+      alert(error.message);
     }
   }
   
-  const createAccount = () => {
+  const loginPage = () => {
     router.push('/');
   }
 
@@ -56,7 +69,7 @@ export default function App() {
         <Button title="Create Account" onPress={loginCheck} color="#00ad90"/>
       </View>
       <View style={{width:'75%', borderColor:'#00061d'}}>
-        <Button title="Login to existing account" onPress={createAccount} color="#091858"/>
+        <Button title="Login to existing account" onPress={loginPage} color="#091858"/>
       </View>
     </View>
   );

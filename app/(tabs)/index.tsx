@@ -8,9 +8,9 @@ export default function App() {
     const router = useRouter();
   return (
     <View style={{flex: 1, flexDirection: "column"}}>
-        <View style={{flex:1}}>
+        <View style={{flex:1, flexDirection: "row", justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 18}}>
             <Text style={{flex: 1, fontSize: 24, fontWeight: 'bold'}}>Test Page</Text>
-            <Button title="Sign out" onPress={() => router.push('/')} color="#00ad90"/>
+            <View><Button title="Sign out" onPress={() => router.replace('/')} color="#00ad90"/></View>
         </View>
         <FlashList
             data={homeFeed}
